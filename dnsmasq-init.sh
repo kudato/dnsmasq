@@ -47,7 +47,7 @@ dnsmasq_default() {
     local result=""
     for ns in $(dnsmasq_env DEFAULT)
     do
-          local result="${result}server=$(split_env "$ns")\n"
+          local result="${result}server=$(env_value "$ns")\n"
     done
     echo $result
 }
@@ -58,7 +58,7 @@ dnsmasq_rules() {
     local result=""
     for ns in $(dnsmasq_env RULE)
     do
-      local result="${result}server=$(split_env "$ns")\n"
+      local result="${result}server=$(env_value "$ns")\n"
     done
     echo $result
 }
@@ -73,7 +73,7 @@ dnsmasq_a() {
     local result=""
     for record in $(dnsmasq_env RECORD | grep _A)
     do
-      local result="${result}address=$(split_env "$record")\n"
+      local result="${result}address=$(env_value "$record")\n"
     done
     echo $result
 }
@@ -86,7 +86,7 @@ dnsmasq_mx() {
     local result=""
     for record in $(dnsmasq_env RECORD | grep MX)
     do
-      local result="${result}mx-host=$(split_env $record)\n"
+      local result="${result}mx-host=$(env_value $record)\n"
     done
     echo $result
 }
@@ -99,7 +99,7 @@ dnsmasq_srv() {
     local result=""
     for record in $(dnsmasq_env RECORD | grep SRV)
     do
-      local result="${result}srv-host=$(split_env $record)\n"
+      local result="${result}srv-host=$(env_value $record)\n"
     done
     echo $result
 }
@@ -112,7 +112,7 @@ dnsmasq_ptr() {
     local result=""
     for record in $(dnsmasq_env RECORD | grep PRT)
     do
-      local result="${result}ptr-record=$(split_env $record)\n"
+      local result="${result}ptr-record=$(env_value $record)\n"
     done
     echo $result
 }
@@ -126,7 +126,7 @@ dnsmasq_alias() {
     local result=""
     for record in $(dnsmasq_env ALIAS)
     do
-      local result="${result}server=$(split_env $record)\n"
+      local result="${result}server=$(env_value $record)\n"
     done
     echo $result
 }
