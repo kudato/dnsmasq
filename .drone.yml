@@ -1,0 +1,17 @@
+
+kind: pipeline
+name: Publish to Docker Hub
+
+steps:
+- name: Make
+  image: plugins/docker
+  settings:
+    repo: kudato/dnsmasq
+    dockerfile: Dockerfile
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    tags:
+      - latest
+      - alpine3.9
