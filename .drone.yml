@@ -3,7 +3,7 @@ kind: pipeline
 name: Publish to Docker Hub
 
 steps:
-- name: Make
+- name: Build image
   image: plugins/docker
   settings:
     repo: kudato/dnsmasq
